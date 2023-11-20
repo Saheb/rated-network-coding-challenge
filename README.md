@@ -71,3 +71,68 @@ That being said,
 * You will stand out by converting the CSV into an event stream and processing that stream.
 
 Good luck!
+
+## Solution
+
+### Install libs
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip3 install -r requirements.txt
+```
+
+### Run
+
+1. Data Processing
+
+```
+python -m bytewax.run data_processing:flow
+```
+This will create and populate db with transaction data
+
+2. Run the server
+```
+python server.py
+```
+
+3. Hit the end points to verify
+
+http://127.0.0.1:8000/transactions/0x4843f0d69e489360b57e4bb2a261493ea57b65ad6abfd43e5ebe6074026d6c66
+
+```
+{
+  "hash": "0x4843f0d69e489360b57e4bb2a261493ea57b65ad6abfd43e5ebe6074026d6c66",
+  "fromAddress": "0xd1da03feeae645f76b729a9ec6012d80c0805dcc",
+  "toAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+  "blockNumber": 17818510,
+  "executedAt": "2023-08-01T06:58:35.000000 UTC",
+  "gasUsed": 46121,
+  "gasCostInDollars": 1.64
+}
+```
+
+
+http://127.0.0.1:8000/stats
+
+```json
+{
+  "totalTransactionsInDB": 5000,
+  "totalGasUsed": 494112901,
+  "totalGasCostInDollars": 21813.48
+}
+```
+
+### Tests
+
+```
+pytest
+```
+
+### Things I'd do if I had more time
+
+- Define an bytewax Output Sqlite Sink
+- Use stateful operation and aggregate/total stats once during data-processing
+- cache eth price in our db (or some other persistent storage)
+- refactored fetch_price for testability (so it can be mocked)
+- api unit tests
+- property testing 

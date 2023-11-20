@@ -1,0 +1,5 @@
+bytewax==0.17.2
+fastapi==0.104.1
+requests==2.31.0
+uvicorn==0.24.0.post1
+pytest==7.4.3
