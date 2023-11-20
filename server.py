@@ -6,6 +6,7 @@ from db import DB
 import typing as t
 from fastapi import HTTPException
 import logging
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +15,7 @@ try:
     db = DB()
 except Exception as e:
     logger.error(f"An error occurred while initializing the app: {e}")
-    exit(1)
+    sys.exit(1)
 
 @app.get("/transactions/{hash}")
 def transaction(hash: str) -> t.Optional[Txn]:

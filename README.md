@@ -88,18 +88,19 @@ pip3 install -r requirements.txt
 ```
 python -m bytewax.run data_processing:flow
 ```
-This will create and populate db with transaction data
+This will create a local filebased sqlite database and populate it with transaction data
 
 2. Run the server
 ```
 python server.py
 ```
+This should start the server at http://127.0.0.1:8000
 
-3. Hit the end points to verify
+3. Verify the endpoints
 
 http://127.0.0.1:8000/transactions/0x4843f0d69e489360b57e4bb2a261493ea57b65ad6abfd43e5ebe6074026d6c66
 
-```
+```json
 {
   "hash": "0x4843f0d69e489360b57e4bb2a261493ea57b65ad6abfd43e5ebe6074026d6c66",
   "fromAddress": "0xd1da03feeae645f76b729a9ec6012d80c0805dcc",
@@ -131,6 +132,7 @@ pytest
 ### Things I'd do if I had more time
 
 - Define an bytewax Output Sqlite Sink
+- Make DB a interface like class with abstract methods (so db specific code can be decoupled and easily replaced)
 - Use stateful operation and aggregate/total stats once during data-processing
 - cache eth price in our db (or some other persistent storage)
 - refactored fetch_price for testability (so it can be mocked)
