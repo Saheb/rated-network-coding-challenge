@@ -74,6 +74,13 @@ Good luck!
 
 ## Solution
 
+As there are not many files, they are all present on the root level itself.
+
+data_processing.py - processes the ethereum csv file and writes them to a sqlite database
+server.py - fastapi server and endpoints
+db.py - code for db operations
+datatypes.py - data models
+
 ### Install libs
 ```
 python3 -m venv .venv
@@ -133,6 +140,7 @@ pytest
 
 - Define an bytewax Output Sqlite Sink
 - Make DB a interface like class with abstract methods (so db specific code can be decoupled and easily replaced)
+- improve repo structure (src, test folders, etc.)
 - Use stateful operation and aggregate/total stats once during data-processing
 - cache eth price in our db (or some other persistent storage)
 - refactored fetch_price for testability (so it can be mocked)
